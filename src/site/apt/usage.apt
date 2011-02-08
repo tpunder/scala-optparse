@@ -1,0 +1,11 @@
+Usage
+
+Maven
+
++----------------------------------------+
+<dependency>
+  <groupId>com.frugalmechanic</groupId>
+  <artifactId>scala-optparse</artifactId>
+  <version>1.0</version>
+</dependency>
++----------------------------------------+

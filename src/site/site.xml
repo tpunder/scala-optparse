@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Scala-optparse">
+  <publishDate position="right"/>
+  <version position="none"/>
+  
+  <body>
+    <breadcrumbs>
+      <item name="Frugal Mechanic" href="http://frugalmechanic.com" />
+      <item name="Tech" href="http://frugalmechanic.com/tech" />
+      <item name="Scala-optparse" href="http://frugalmechanic.com/tech/scala-optparse" />
+    </breadcrumbs>
+
+    <menu name="Overview">
+      <item name="About" href="index.html" />
+      <item name="Usage" href="usage.html" />
+      <item name="Download" href="download.html" />
+      <item name="Scaladocs" href="scaladocs/index.html" target="_blank" />
+      <item name="License" href="license.html" />
+      <item name="Source" href="source-repository.html" />
+    </menu>
+    
+    <menu ref="reports" />
+    <menu ref="modules" />
+
+  </body>
+  
+</project>

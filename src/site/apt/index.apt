@@ -1,0 +1,7 @@
+Simple Command Line Parsing for Scala
+  
+  OptParse provides simple command line parsing for Scala that only requires a minimal amount of code.
+
+Hello World Example
+  
+%{snippet|id=hello_world|url=file:src/test/scala/com/frugalmechanic/optparse/TestExamples.scala}
