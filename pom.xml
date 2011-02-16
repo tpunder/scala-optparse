@@ -1,5 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>6</version>
+  </parent>
   <groupId>com.frugalmechanic</groupId>
   <artifactId>scala-optparse</artifactId>
   <version>1.0-SNAPSHOT</version>
@@ -29,6 +34,7 @@
   </developers>
   <scm>
       <connection>scm:git:git://github.com/frugalmechanic/scala-optparse.git</connection>
+      <developerConnection>scm:git:git://github.com/frugalmechanic/scala-optparse.git</developerConnection>
       <url>https://github.com/frugalmechanic/scala-optparse</url>
   </scm>
 
@@ -37,6 +43,7 @@
     <maven.compiler.target>1.5</maven.compiler.target>
     <encoding>UTF-8</encoding>
     <scala.version>2.8.1</scala.version>
+    <scala-plugin.version>2.15.0</scala-plugin.version>
   </properties>
 
   <dependencies>
@@ -68,7 +75,7 @@
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
-        <version>2.15.0</version>
+        <version>${scala-plugin.version}</version>
         <executions>
           <execution>
             <goals>
@@ -105,15 +112,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>2.2</version>
-        <executions>
-          <execution>
-            <id>make-site</id>
-            <phase>package</phase>
-            <goals>
-              <goal>site</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>
@@ -145,21 +143,39 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.2</version>
         <configuration>
-          <appendAssemblyId>false</appendAssemblyId>
           <descriptors>
-            <descriptor>src/main/assembly/all.xml</descriptor>
+              <descriptor>src/main/assembly/bin.xml</descriptor>
+              <descriptor>src/main/assembly/src.xml</descriptor>
           </descriptors>
         </configuration>
         <executions>
           <execution>
-            <id>make-assembly</id> <!-- this is used for inheritance merges -->
-            <phase>package</phase> <!-- append to the packaging phase. -->
+            <id>make-assembly</id>
+            <phase>package</phase>
             <goals>
-              <goal>single</goal> <!-- goals == mojos -->
+              <goal>single</goal>
             </goals>
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.scala-tools</groupId>
+        <artifactId>maven-scala-plugin</artifactId>
+        <version>${scala-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>doc</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>doc</goal>
+            </goals>
+            <configuration>
+              <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
+              <outputDirectory>apidocs</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+    </plugin>
       
     </plugins>
   </build>
@@ -170,6 +186,7 @@
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
+        <version>${scala-plugin.version}</version>
       </plugin>
 
       <plugin>
@@ -192,51 +209,5 @@
 
     </plugins>
   </reporting>
-
-  <profiles>
-  <profile>
-    <id>release-sign-artifacts</id>
-    <activation>
-      <property>
-        <name>performRelease</name>
-        <value>true</value>
-      </property>
-    </activation>
-    <build>
-      <plugins>
-        <plugin>
-            <groupId>org.scala-tools</groupId>
-            <artifactId>maven-scala-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>doc</id>
-                <phase>process-classes</phase>
-                <goals>
-                  <goal>doc</goal>
-                </goals>
-                <configuration>
-                  <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
-                  <outputDirectory>apidocs</outputDirectory>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>sign-artifacts</id>
-              <phase>verify</phase>
-              <goals>
-                <goal>sign</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </build>
-  </profile>
-</profiles>
 
 </project>
