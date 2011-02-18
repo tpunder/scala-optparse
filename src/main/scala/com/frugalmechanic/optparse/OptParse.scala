@@ -17,7 +17,6 @@
 package com.frugalmechanic.optparse
 
 import scala.collection.mutable.{HashMap,ListBuffer}
-import scala.util.matching.Regex
 
 /**
  * =Simple Command Line Parsing for Scala=
@@ -128,7 +127,7 @@ import scala.util.matching.Regex
  *  - [[com.frugalmechanic.optparse.FileOpt]]
  *  - [[com.frugalmechanic.optparse.MultiStrOpt]]
  */
-trait OptParse {
+trait OptParse extends OptParseImplicits with OptParseTypes {
   
   /**
    * A default help option (--help or -h) that displays the help message
@@ -477,9 +476,10 @@ trait OptParse {
     throw new IllegalArgumentException(msg)
   }
 
-  protected def exit(msg:String=null, status:Int = -1) {
+  protected def exit(msg:String=null, status:Int = -1):Nothing = {
     if(null != msg) System.err.println(msg)
     System.exit(status)
+    throw new Throwable()
   }
 
   /**

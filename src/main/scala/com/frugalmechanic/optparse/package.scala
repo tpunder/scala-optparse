@@ -16,42 +16,4 @@
 
 package com.frugalmechanic
 
-import scala.util.matching.Regex
-
-package object optparse {
-  /**
-   * Allows BoolOpt(enables=MyOpt) instead of BoolOpt(enables=Seq(MyOpt))
-   */
-  implicit def OptToSeq[T](opt:Opt) = Seq(opt)
-
-  // Allows "if(MyFlag) ..."
-  implicit def BoolOptToBool(opt:BoolOpt): Boolean = opt.value match {
-    case Some(b) => b
-    case None => false
-  }
-
-  /**
-   * Allows: if(NameOpt) ... instead of if(NameOpt.value.isDefined) ...
-   */
-  implicit def OptToBool[T](opt:OptVal[T]): Boolean = opt.value match {
-    case Some(_) => true
-    case None => false
-  }
-
-  /**
-   * Allows longName="name" without needing long=Some("name")
-   */
-  implicit def ValToOption[T](value:T): Option[T] = Some(value)
-
-  /**
-   * Allows regex usage for the validate option: validate="^[a-zA-Z]+$"
-   */
-  implicit def StringToValidateRegex(regex:Regex): (String) => Boolean = {
-    (s:String) => { regex.findFirstIn(s) != None }
-  }
-
-  /**
-   * Allows any Option methods to be used on an OptVal
-   */
-  implicit def OptValToOption[T](opt:OptVal[T]): Option[T] = opt.value
-}
+package object optparse extends OptParseImplicits
