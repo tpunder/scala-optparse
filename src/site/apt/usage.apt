@@ -1,11 +1,112 @@
 Usage
 
-Maven
+  {{{./download.html}Download}} the JAR or add a {{{./download.html}Maven dependency}}.  Also check out the {{{./scaladocs/index.html}Scaladocs}}.
 
-+----------------------------------------+
-<dependency>
-  <groupId>com.frugalmechanic</groupId>
-  <artifactId>scala-optparse</artifactId>
-  <version>1.0</version>
-</dependency>
-+----------------------------------------+
+
+Hello World Example
+
++-----------------------------------------------------
+import com.frugalmechanic.optparse._
+
+object SimpleApp extends OptParse {
+ val name = StrOpt()
+
+  def main(args:Array[String]) {
+    parse(args)
+    println("Hello "+name.getOrElse("world"))
+  }
+}
++-----------------------------------------------------
+
+* Call App
+
++-----------------------
+./simpleApp --name World
++-----------------------
+
+  or
+
++-----------------------
+./simpleApp -n World
++-----------------------
+
+More Complete Example
+
++-----------------------------------------------------
+import com.frugalmechanic.optparse._
+
+object MyApp extends OptParse {
+  // --flag (-f is ambiguous since it overlaps with file)
+  val flag = BoolOpt()
+
+  // --name (-n is ambiguous since it overlaps with number)
+  val name = StrOpt()
+  
+  // Can be called multiple times with --aliases or -a (e.g.: --aliases Foo --aliases Bar OR -a Foo -a Bar)
+  val aliases = MultiStrOpt()
+
+  // --number (-n is ambiguous since it overlaps with name)
+  val number = IntOpt()
+
+  // --file (-f is ambiguous since it overlaps with flag)
+  val file = FileOpt()
+
+  def main(args:Array[String]) {
+    // Parse the command line arguments
+    parse(args)
+
+    // Implicit conversion to bool
+    if(flag) println("flag was set!")
+    
+    // Implicit conversion to bool to check if a value is set
+    if(name) println("Name: "+name.get)
+    
+    if(aliases) println("Your alias(es) are: "+aliases.getOrElse(Nil))
+
+    if(number) println("Your number is: "+number.get)
+
+    if(file) println("Your file is: "+file.get)
+  }
+
+}
++-----------------------------------------------------
+
+
+* Show help message
+
++-----------------
+./myApp --help
++-----------------
+
+  or
+
++-----------------
+./myApp -h
++-----------------
+
+
+* Pass in some options
+
++-----------------------------------------------------------------------
+./myApp --flag --name Tim --aliases Timothy --aliases Timmy --number 123
++-----------------------------------------------------------------------
+
+Nested Options Object Example
+
+  You can also use a nested options object (or class) for parsing the options:
+
++-----------------------------------------------------
+import com.frugalmechanic.optparse._
+
+object MyApp2 {
+  object options extends OptParse {
+     val flag = BoolOpt()
+  }
+
+  def main(args:Array[String]) {
+    options.parse(args)
+
+    if(options.flag) println("flag is set")
+  }
+}
++-----------------------------------------------------

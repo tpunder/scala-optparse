@@ -2,6 +2,16 @@ Simple Command Line Parsing for Scala
   
   OptParse provides simple command line parsing for Scala that only requires a minimal amount of code.
 
+Features
+
+  * Less Boilerplate
+
+  * Default option names based on val/var name
+
+  * Auto help message generation
+  
+  * No external dependencies
+
 Hello World Example
   
 %{snippet|id=hello_world|url=file:src/test/scala/com/frugalmechanic/optparse/TestExamples.scala}

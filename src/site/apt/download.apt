@@ -1,3 +1,17 @@
 Download
 
-  Coming soon
+* Version 1.0 
+  
+    * Binary: {{{http://repo1.maven.org/maven2/com/frugalmechanic/scala-optparse/1.0/scala-optparse-1.0-bin.tar.gz}tar.gz}} {{{http://repo1.maven.org/maven2/com/frugalmechanic/scala-optparse/1.0/scala-optparse-1.0-bin.zip}zip}}
+
+    * Source: {{{http://repo1.maven.org/maven2/com/frugalmechanic/scala-optparse/1.0/scala-optparse-1.0-src.tar.gz}tar.gz}} {{{http://repo1.maven.org/maven2/com/frugalmechanic/scala-optparse/1.0/scala-optparse-1.0-src.zip}zip}}
+
+    * Maven:
+
++----------------------------------------
+<dependency>
+  <groupId>com.frugalmechanic</groupId>
+  <artifactId>scala-optparse</artifactId>
+  <version>1.0</version>
+</dependency>
++----------------------------------------
