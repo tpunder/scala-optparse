@@ -1,3 +1,6 @@
+  -----
+  Usage
+
 Usage
 
   {{{./download.html}Download}} the JAR or add a {{{./download.html}Maven dependency}}.  Also check out the {{{./scaladocs/index.html}Scaladocs}}.

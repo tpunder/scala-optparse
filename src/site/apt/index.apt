@@ -1,3 +1,6 @@
+  -------------------------------------
+  Simple Command Line Parsing for Scala
+
 Simple Command Line Parsing for Scala
   
   OptParse provides simple command line parsing for Scala that only requires a minimal amount of code.
