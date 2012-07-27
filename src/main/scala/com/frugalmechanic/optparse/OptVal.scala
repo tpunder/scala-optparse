@@ -19,25 +19,25 @@ package com.frugalmechanic.optparse
 /**
  * Base type for a command line option that contains a value
  */
-abstract class OptVal[T](_long:Option[String],
-                         _short:Option[Char],
-                         _default:Option[T],
-                         _desc:String,
+abstract class OptVal[T](_long: Option[String],
+                         _short: Option[Char],
+                         _default: Option[T],
+                         _desc: String,
                          _enables: => Seq[BoolOpt],
                          _disables: => Seq[BoolOpt],
                          _invalidWith: => Seq[Opt],
                          _validWith: => Seq[Opt],
-                         _exclusive:Boolean
+                         _exclusive: Boolean
 ) extends Opt(_long, _short, _desc, _enables, _disables, _invalidWith, _validWith, _exclusive) {
 
-  private var _value:Option[T] = None
-  private[optparse] def value_=(v:T) { _value = Some(v) }
-  private[optparse] def value_=(o:Option[T]) { _value = o }
+  private var _value: Option[T] = None
+  private[optparse] def value_=(v: T) { _value = Some(v) }
+  private[optparse] def value_=(o: Option[T]) { _value = o }
 
   /**
    * The value attached to this command line option (wrapped in an Option)
    */
-  def value:Option[T] = _value
+  def value: Option[T] = _value
 
   /**
    * The default value for this options
@@ -55,5 +55,5 @@ abstract class OptVal[T](_long:Option[String],
    * This calls Option.get on the underlying value so an exception will be
    * thrown if the value is not set.
    */
-  def apply():T = value.get
+  def apply(): T = value.get
 }

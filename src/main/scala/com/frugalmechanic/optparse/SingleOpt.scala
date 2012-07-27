@@ -16,10 +16,10 @@
 
 package com.frugalmechanic.optparse
 
-trait SingleOpt[T] { self:ArgOpt[T] =>
+trait SingleOpt[T] { self: ArgOpt[T] =>
   override type Elem = T
 
-  def setValue(arg:String) {
+  def setValue(arg: String) {
     if(value.isDefined) throw new IllegalArgumentException("A value is already set for this argument.  Existing value: "+value.get+"  Trying to set value to: "+arg)
     value = parseValue(arg)
   }

@@ -19,14 +19,14 @@ package com.frugalmechanic.optparse
 /**
  * The base type of all command line options
  */
-abstract class Opt(_long:Option[String],
-                   _short:Option[Char],
-                   _desc:String,
+abstract class Opt(_long: Option[String],
+                   _short: Option[Char],
+                   _desc: String,
                    _enables: => Seq[BoolOpt],
                    _disables: => Seq[BoolOpt],
                    _invalidWith: => Seq[Opt],
                    _validWith: => Seq[Opt],
-                   _exclusive:Boolean) {
+                   _exclusive: Boolean) {
 
   /**
    * The long form of this option (if any)
@@ -72,18 +72,18 @@ abstract class Opt(_long:Option[String],
    * with any other options (e.g. a help options that prints the help message
    * and then quits)
    */
-  def exclusive:Boolean = _exclusive
+  def exclusive: Boolean = _exclusive
 
   // Reset this option to it's default
-  protected[optparse] def reset:Unit
+  protected[optparse] def reset: Unit
 
   /* Placeholders for the actual long and short names since "long" and "short"
    * above might be initialized to None and we need a place to put any generated
    * values.
    */
-  protected[optparse] var actualLong:Option[String] = None
-  protected[optparse] var actualShort:Option[Char] = None
+  protected[optparse] var actualLong: Option[String] = None
+  protected[optparse] var actualShort: Option[Char] = None
 
   // Also track the method name for easier error reporting
-  protected[optparse] var methodName:String = ""
+  protected[optparse] var methodName: String = ""
 }

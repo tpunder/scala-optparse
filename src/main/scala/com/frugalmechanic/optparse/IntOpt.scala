@@ -34,15 +34,15 @@ object IntOpt {
    */
   def apply(
     /* Common Options from Opt Trait */
-    long: Option[String]=None,
-    short: Option[Char]=None,
-    default: Option[Int]=None,
-    desc: String="",
-    enables: => Seq[BoolOpt]=Nil,
-    disables: => Seq[BoolOpt]=Nil,
-    invalidWith: => Seq[Opt]=Nil,
-    validWith: => Seq[Opt]=Nil,
-    exclusive: Boolean=false,
+    long: Option[String] = None,
+    short: Option[Char] = None,
+    default: Option[Int] = None,
+    desc: String = "",
+    enables: => Seq[BoolOpt] = Nil,
+    disables: => Seq[BoolOpt] = Nil,
+    invalidWith: => Seq[Opt] = Nil,
+    validWith: => Seq[Opt] = Nil,
+    exclusive: Boolean = false,
     validate: Int => Boolean = {s => true}
   ) = new IntOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate)
 }

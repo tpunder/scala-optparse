@@ -33,7 +33,7 @@ import scala.collection.mutable.{HashMap,ListBuffer}
  * object SimpleApp extends OptParse {
  *   val name = StrOpt()
  *
- *   def main(args:Array[String]) {
+ *   def main(args: Array[String]) {
  *     parse(args)
  *     println("Hello "+name.getOrElse("world"))
  *   }
@@ -68,7 +68,7 @@ import scala.collection.mutable.{HashMap,ListBuffer}
  *   // --file (-f is ambiguous since it overlaps with flag)
  *   val file = FileOpt()
  *
- *   def main(args:Array[String]) {
+ *   def main(args: Array[String]) {
  *     // Parse the command line arguments
  *     parse(args)
  *
@@ -110,7 +110,7 @@ import scala.collection.mutable.{HashMap,ListBuffer}
  *      val flag = BoolOpt()
  *   }
  *
- *   def main(args:Array[String]) {
+ *   def main(args: Array[String]) {
  *     options.parse(args)
  *
  *     if(options.flag) println("flag is set")
@@ -149,7 +149,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   // Our "default" option (if any) where argument values not prefixed by an
   // option name will go. e.g. "./myApp foo", the foo would be parsed by the
   // default option
-  private var _defaultOpt:Option[ArgOpt[_]] = None
+  private var _defaultOpt: Option[ArgOpt[_]] = None
 
   /**
    * Override to true to enable simple println's showing what OptParse is doing
@@ -163,7 +163,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
    */
   val optParseExitOnError = true
 
-  private lazy val init:Unit = {
+  private lazy val init: Unit = {
     val proposedLongNames = new HashMap[String,ListBuffer[Opt]]
     val proposedShortNames = new HashMap[Char,ListBuffer[Opt]]
 
@@ -176,8 +176,8 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     // Pass 1 - Gather all the Opt's and track long/short names
     //
     getClass.getMethods.filter{f => optClass.isAssignableFrom(f.getReturnType) && f.getParameterTypes.isEmpty }.foreach { f =>
-      val methodName:String = f.getName
-      val opt:Opt = f.invoke(this).asInstanceOf[Opt]
+      val methodName: String = f.getName
+      val opt: Opt = f.invoke(this).asInstanceOf[Opt]
       if(optParseDebug) println(" Found Opt: "+f.getName+" => "+opt)
 
       // Keep track of all of our opts
@@ -226,13 +226,13 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     }
   }
 
-  private def registerLongName(name:String, opt:Opt) {
+  private def registerLongName(name: String, opt: Opt) {
     assert(!longNames.contains(name), "Duplicate Long Name: "+name)
     longNames(name) = opt
     opt.actualLong = name
   }
 
-  private def registerShortName(char:Char, opt:Opt) {
+  private def registerShortName(char: Char, opt: Opt) {
     assert(!shortNames.contains(char), "Duplicate Short Name: "+char)
     shortNames(char) = opt
     opt.actualShort = char
@@ -241,7 +241,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   /**
    * Declare a "default option"
    */
-  def defaultOpt[T](arg:ArgOpt[T]):ArgOpt[T] = {
+  def defaultOpt[T](arg: ArgOpt[T]): ArgOpt[T] = {
     if(_defaultOpt.isDefined) exit("A default option is already defined!")
     _defaultOpt = Some(arg)
     arg
@@ -250,7 +250,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   /**
    * Parse the given command line options
    */
-  def parse(args:Array[String]) {
+  def parse(args: Array[String]) {
     init
 
     // Reset all opts to their default values
@@ -269,27 +269,27 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
       
       validateArgs()
     } catch {
-      case ex:IllegalArgumentException =>
+      case ex: IllegalArgumentException =>
         if(optParseExitOnError) {
           exit("Error Parsing Command Line Arguments: "+ex.getMessage)
         } else throw ex
     }
   }
 
-  private def parseArg(args:ListBuffer[String]) {
+  private def parseArg(args: ListBuffer[String]) {
     def nextArg(): String = {
       if(args.isEmpty) error("Missing next argument")
       args.remove(0)
     }
 
-    def parseDefaultOpt(value:String) {
+    def parseDefaultOpt(value: String) {
       _defaultOpt match {
         case Some(opt) => opt.setValue(value)
         case None => error("No Default Opt Specified.  Not sure how to parse: "+value)
       }
     }
 
-    val head:String = nextArg()
+    val head: String = nextArg()
 
     /**
      * Arg Formats (with value):
@@ -339,13 +339,13 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
           foundOpts += opt
 
           opt match {
-            case argOpt:ArgOpt[_] =>
+            case argOpt: ArgOpt[_] =>
               val value = if(hasEquals) head.substring(equalsIdx+1) else nextArg()
               argOpt.setValue(value)
 
               if(optParseDebug) println("Parsed Long Options: '"+name+"' with value: '"+value+"'")
 
-            case boolOpt:BoolOpt =>
+            case boolOpt: BoolOpt =>
               // Should not have a value
               if(hasEquals) error("Option does not take a value: "+name)
               boolOpt.value = true
@@ -358,10 +358,10 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
     } else if(head.startsWith("-")) {
       // Short Opt
-      var idx:Int = 1
+      var idx: Int = 1
 
       while(idx < head.length) {
-        val ch:Char = head(idx)
+        val ch: Char = head(idx)
 
         shortNames.get(ch) match {
           case None => error("Unknown short option: "+ch)
@@ -369,11 +369,11 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
             foundOpts += opt
 
             opt match {
-              case argOpt:ArgOpt[_] =>
+              case argOpt: ArgOpt[_] =>
                 // Possible Patterns:
                 //    -ovalue, -o value -o=value, -abovalue => -a, -b, -o value
 
-                val value:String = if(idx+1 == head.length) {
+                val value: String = if(idx+1 == head.length) {
                   // -o value
                   nextArg()
                 } else if (head(idx+1) == '=') {
@@ -392,7 +392,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
                 if(optParseDebug) println("Parsed Short Option: '"+ch+"' with value: '"+value+"'")
                 idx = head.length // Terminate the loop
 
-              case boolOpt:BoolOpt =>
+              case boolOpt: BoolOpt =>
                 // TODO: Check that next char should not be an equals
 
                 boolOpt.value = true
@@ -425,7 +425,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
   }
 
-  private def handleDisablesEnables(opt:Opt) {
+  private def handleDisablesEnables(opt: Opt) {
     opt.disables.foreach{ disableOpt =>
       disableOpt.value = false
       foundOpts -= disableOpt
@@ -454,7 +454,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     }
   }
 
-  protected def optName(opt:Opt):String = {
+  protected def optName(opt: Opt): String = {
     opt.actualLong match {
       case Some(name) => return "--"+name
       case None =>
@@ -470,13 +470,13 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   /**
    * Exit the application with a message
    */
-  protected def error(msg:String) {
+  protected def error(msg: String) {
     //System.err.println("Error Parsing Command Line Arguments: "+msg)
     //exit(msg)
     throw new IllegalArgumentException(msg)
   }
 
-  protected def exit(msg:String=null, status:Int = -1):Nothing = {
+  protected def exit(msg: String = null, status: Int = -1): Nothing = {
     if(null != msg) System.err.println(msg)
     System.exit(status)
     throw new Throwable()
@@ -494,12 +494,12 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     }
 
     allOpts.foreach { opt =>
-      val short:String = opt.actualShort match {
+      val short: String = opt.actualShort match {
         case None => "  "
         case Some(ch) => "-"+ch
       }
 
-      val long:String = opt.actualLong.map{s => "--"+s}.getOrElse("").padTo(maxLongSize+2,' ')
+      val long: String = opt.actualLong.map{s => "--"+s}.getOrElse("").padTo(maxLongSize+2,' ')
 
       val sb = new StringBuilder
       sb.append("  "+short+"  "+long+"  "+opt.desc)
