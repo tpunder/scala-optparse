@@ -16,12 +16,10 @@
 
 package com.frugalmechanic.optparse
 
-import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers
 
-@RunWith(classOf[JUnitRunner])
 class TestExampleApp1 extends FunSuite with ShouldMatchers {
 
   test("Empty Opts") {

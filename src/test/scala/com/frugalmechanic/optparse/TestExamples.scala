@@ -16,7 +16,6 @@
 
 package com.frugalmechanic.optparse
 
-import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers
@@ -26,7 +25,6 @@ import java.io.{ByteArrayOutputStream, PrintStream}
 // System.out (which we are modifying to capture output)
 import System.out.println
 
-@RunWith(classOf[JUnitRunner])
 class TestExamples extends FunSuite with ShouldMatchers {
   test("Hello World") {
     check(HelloWorldApp, Array(), "Hello world")
