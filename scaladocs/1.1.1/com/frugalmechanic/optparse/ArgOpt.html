@@ -1,0 +1,640 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>com.frugalmechanic.optparse.ArgOpt</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../lib/template.css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+    
+        </head>
+        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="type">
+      <div id="definition">
+        <img src="../../../lib/class_big.png" />
+        <p id="owner"><a name="com" class="extype" href="../../package.html">com</a>.<a name="com.frugalmechanic" class="extype" href="../package.html">frugalmechanic</a>.<a name="com.frugalmechanic.optparse" class="extype" href="package.html">optparse</a></p>
+        <h1>ArgOpt</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ArgOpt</span><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <a name="com.frugalmechanic.optparse.OptVal" class="extype" href="OptVal.html">OptVal</a>[T]</span>
+      </span>
+      </h4>
+      
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Base type for command line options that take an argument</p><p>For implementation examples see:</p><ul><li><a name="com.frugalmechanic.optparse.StrOpt" class="extype" href="StrOpt.html">StrOpt</a></li><li><a name="com.frugalmechanic.optparse.IntOpt" class="extype" href="IntOpt.html">IntOpt</a></li><li><a name="com.frugalmechanic.optparse.FileOpt" class="extype" href="FileOpt.html">FileOpt</a></li><li><a name="com.frugalmechanic.optparse.MultiStrOpt" class="extype" href="MultiStrOpt.html">MultiStrOpt</a>
+</li></ul></div><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a name="com.frugalmechanic.optparse.OptVal" class="extype" href="OptVal.html">OptVal</a>[T], <a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a>, AnyRef, <span name="scala.Any" class="extype">Any</span></div>
+        </div><div class="toggleContainer block">
+          <span class="toggle">Known Subclasses</span>
+          <div class="subClasses hiddenContent"><a name="com.frugalmechanic.optparse.FileOpt" class="extype" href="FileOpt.html">FileOpt</a>, <a name="com.frugalmechanic.optparse.IntOpt" class="extype" href="IntOpt.html">IntOpt</a>, <a name="com.frugalmechanic.optparse.MultiStrOpt" class="extype" href="MultiStrOpt.html">MultiStrOpt</a>, <a name="com.frugalmechanic.optparse.StrOpt" class="extype" href="StrOpt.html">StrOpt</a></div>
+        </div></div>
+    
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol><li class="alpha in"><span>Alphabetic</span></li><li class="inherit out"><span>By inheritance</span></li></ol>
+            </div>
+        <div id="ancestors">
+              <span class="filtertype">Inherited</span>
+              <ol><li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li></ol>
+              <ol id="linearization"><li name="com.frugalmechanic.optparse.ArgOpt" class="in"><span>ArgOpt</span></li><li name="com.frugalmechanic.optparse.OptVal" class="in"><span>OptVal</span></li><li name="com.frugalmechanic.optparse.Opt" class="in"><span>Opt</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
+            </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div class="members" id="constructors">
+              <h3>Instance Constructors</h3>
+              <ol><li visbl="pub" name="com.frugalmechanic.optparse.ArgOpt#this" data-isabs="false">
+      <a id="this:ArgOpt[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ArgOpt</span><span class="params">(<span name="_long">_long: <span name="scala.Option" class="extype">Option</span>[String]</span>, <span name="_short">_short: <span name="scala.Option" class="extype">Option</span>[<span name="scala.Char" class="extype">Char</span>]</span>, <span name="_default">_default: <span name="scala.Option" class="extype">Option</span>[T]</span>, <span name="_desc">_desc: String</span>, <span name="_enables">_enables: ⇒ Seq[<a name="com.frugalmechanic.optparse.BoolOpt" class="extype" href="BoolOpt.html">BoolOpt</a>]</span>, <span name="_disables">_disables: ⇒ Seq[<a name="com.frugalmechanic.optparse.BoolOpt" class="extype" href="BoolOpt.html">BoolOpt</a>]</span>, <span name="_invalidWith">_invalidWith: ⇒ Seq[<a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a>]</span>, <span name="_validWith">_validWith: ⇒ Seq[<a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a>]</span>, <span name="_exclusive">_exclusive: <span name="scala.Boolean" class="extype">Boolean</span></span>, <span name="_validate">_validate: (T) ⇒ <span name="scala.Boolean" class="extype">Boolean</span></span>)</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="com.frugalmechanic.optparse.ArgOpt#Elem" data-isabs="true">
+      <a id="Elem:Elem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Elem</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An invididual element (usually just T)
+</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Abstract Value Members</h3>
+              <ol><li visbl="pub" name="com.frugalmechanic.optparse.ArgOpt#parseValue" data-isabs="true">
+      <a id="parseValue(String):Elem"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">parseValue</span><span class="params">(<span name="value">value: String</span>)</span><span class="result">: Elem</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Specifies how to parse the string from the command line argument into a value of type T
+</p>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.ArgOpt#setValue" data-isabs="true">
+      <a id="setValue(String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">setValue</span><span class="params">(<span name="arg">arg: String</span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Set the value (sending it through parseValue())
+</p>
+    </li></ol>
+            </div>
+
+        <div class="values members" id="values">
+              <h3>Concrete Value Members</h3>
+              <ol><li visbl="pub" name="scala.AnyRef#!=" data-isabs="false">
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name" title="gt4s: $bang$eq">!=</span><span class="params">(<span name="arg0">arg0: AnyRef</span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="scala.Any#!=" data-isabs="false">
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name" title="gt4s: $bang$eq">!=</span><span class="params">(<span name="arg0">arg0: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef###" data-isabs="false">
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name" title="gt4s: $hash$hash">##</span><span class="params">()</span><span class="result">: <span name="scala.Int" class="extype">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#==" data-isabs="false">
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name" title="gt4s: $eq$eq">==</span><span class="params">(<span name="arg0">arg0: AnyRef</span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="scala.Any#==" data-isabs="false">
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name" title="gt4s: $eq$eq">==</span><span class="params">(<span name="arg0">arg0: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="prt" name="com.frugalmechanic.optparse.Opt#actualLong" data-isabs="false">
+      <a id="actualLong:Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">actualLong</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="com.frugalmechanic.optparse" class="extype" href="package.html">optparse</a>] </dd><dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="prt" name="com.frugalmechanic.optparse.Opt#actualShort" data-isabs="false">
+      <a id="actualShort:Option[Char]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">actualShort</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[<span name="scala.Char" class="extype">Char</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="com.frugalmechanic.optparse" class="extype" href="package.html">optparse</a>] </dd><dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.OptVal#apply" data-isabs="false">
+      <a id="apply():T"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">()</span><span class="result">: T</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Get the value</p><div class="fullcomment"><div class="comment cmt"><p>Get the value</p><p>This calls Option.get on the underlying value so an exception will be
+thrown if the value is not set.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.OptVal" class="extype" href="OptVal.html">OptVal</a></dd></dl></div>
+    </li><li visbl="pub" name="scala.Any#asInstanceOf" data-isabs="false">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: T0</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="prt" name="scala.AnyRef#clone" data-isabs="false">
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: AnyRef</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="java.lang" class="extype" href="../../../java/lang/package.html">lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.OptVal#default" data-isabs="false">
+      <a id="default:Option[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">default</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[T]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The default value for this options
+</p><div class="fullcomment"><div class="comment cmt"><p>The default value for this options
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.OptVal" class="extype" href="OptVal.html">OptVal</a></dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#desc" data-isabs="false">
+      <a id="desc:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">desc</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The description of this option which is used as part of the help message
+</p><div class="fullcomment"><div class="comment cmt"><p>The description of this option which is used as part of the help message
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#disables" data-isabs="false">
+      <a id="disables:Seq[BoolOpt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">disables</span><span class="result">: Seq[<a name="com.frugalmechanic.optparse.BoolOpt" class="extype" href="BoolOpt.html">BoolOpt</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">A list of boolean option that this option disables
+</p><div class="fullcomment"><div class="comment cmt"><p>A list of boolean option that this option disables
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#enables" data-isabs="false">
+      <a id="enables:Seq[BoolOpt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">enables</span><span class="result">: Seq[<a name="com.frugalmechanic.optparse.BoolOpt" class="extype" href="BoolOpt.html">BoolOpt</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">A List of boolean options that this option enables
+</p><div class="fullcomment"><div class="comment cmt"><p>A List of boolean options that this option enables
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: AnyRef</span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#equals" data-isabs="false">
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#exclusive" data-isabs="false">
+      <a id="exclusive:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exclusive</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Whether or not this command line options is exclusive and cannot be used
+with any other options (e.</p><div class="fullcomment"><div class="comment cmt"><p>Whether or not this command line options is exclusive and cannot be used
+with any other options (e.g. a help options that prints the help message
+and then quits)
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="prt" name="scala.AnyRef#finalize" data-isabs="false">
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="java.lang" class="extype" href="../../../java/lang/package.html">lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#getClass" data-isabs="false">
+      <a id="getClass():java.lang.Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: java.lang.Class[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#hashCode" data-isabs="false">
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span name="scala.Int" class="extype">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#invalidWith" data-isabs="false">
+      <a id="invalidWith:Seq[Opt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">invalidWith</span><span class="result">: Seq[<a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Other command line options that this option is invalid with
+</p><div class="fullcomment"><div class="comment cmt"><p>Other command line options that this option is invalid with
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="scala.Any#isInstanceOf" data-isabs="false">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#long" data-isabs="false">
+      <a id="long:Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">long</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The long form of this option (if any)</p><div class="fullcomment"><div class="comment cmt"><p>The long form of this option (if any)</p><p>(e.g. &quot;myoption&quot; would be called with &quot;--myoption&quot; on the command line)
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="prt" name="com.frugalmechanic.optparse.Opt#methodName" data-isabs="false">
+      <a id="methodName:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">methodName</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="com.frugalmechanic.optparse" class="extype" href="package.html">optparse</a>] </dd><dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#ne" data-isabs="false">
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: AnyRef</span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#notify" data-isabs="false">
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#notifyAll" data-isabs="false">
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.OptVal#reset" data-isabs="false">
+      <a id="reset:Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">reset</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Reset the value to the default
+</p><div class="fullcomment"><div class="comment cmt"><p>Reset the value to the default
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.OptVal" class="extype" href="OptVal.html">OptVal</a> → <a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#short" data-isabs="false">
+      <a id="short:Option[Char]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">short</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[<span name="scala.Char" class="extype">Char</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The short form of this option (if any)</p><div class="fullcomment"><div class="comment cmt"><p>The short form of this option (if any)</p><p>(e.g. &quot;a&quot; would be called with &quot;-a&quot; on the command line)
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#synchronized" data-isabs="false">
+      <a id="synchronized[T0](⇒ T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ T0</span>)</span><span class="result">: T0</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#toString" data-isabs="false">
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span name="java.lang.String" class="extype">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.Opt#validWith" data-isabs="false">
+      <a id="validWith:Seq[Opt]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">validWith</span><span class="result">: Seq[<a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Other command line options that are required when this option is set
+</p><div class="fullcomment"><div class="comment cmt"><p>Other command line options that are required when this option is set
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></dd></dl></div>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.ArgOpt#validate" data-isabs="false">
+      <a id="validate(T):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">validate</span><span class="params">(<span name="value">value: T</span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Validate the parsed value using the validate argument passed in on the constructor
+</p>
+    </li><li visbl="pub" name="com.frugalmechanic.optparse.OptVal#value" data-isabs="false">
+      <a id="value:Option[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">value</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[T]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">The value attached to this command line option (wrapped in an Option)
+</p><div class="fullcomment"><div class="comment cmt"><p>The value attached to this command line option (wrapped in an Option)
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="com.frugalmechanic.optparse.OptVal" class="extype" href="OptVal.html">OptVal</a></dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span name="scala.Long" class="extype">Long</span></span>, <span name="arg1">arg1: <span name="scala.Int" class="extype">Int</span></span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span name="scala.Long" class="extype">Long</span></span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div name="com.frugalmechanic.optparse.OptVal" class="parent">
+              <h3>Inherited from <a name="com.frugalmechanic.optparse.OptVal" class="extype" href="OptVal.html">OptVal</a>[T]</h3>
+            </div><div name="com.frugalmechanic.optparse.Opt" class="parent">
+              <h3>Inherited from <a name="com.frugalmechanic.optparse.Opt" class="extype" href="Opt.html">Opt</a></h3>
+            </div><div name="scala.AnyRef" class="parent">
+              <h3>Inherited from AnyRef</h3>
+            </div><div name="scala.Any" class="parent">
+              <h3>Inherited from <span name="scala.Any" class="extype">Any</span></h3>
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
