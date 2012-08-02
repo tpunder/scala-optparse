@@ -2,7 +2,7 @@ name := "scala-optparse"
 
 organization := "com.frugalmechanic"
 
-version := "1.1.1"
+version := "1.2-SNAPSHOT"
 
 description := "Command line option parsing for Scala"
 
