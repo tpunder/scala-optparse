@@ -12,7 +12,7 @@ homepage := Some(url("http://frugalmechanic.com/tech/scala-optparse"))
 
 scalaVersion := "2.9.2"
 
-crossScalaVersions := Seq("2.8.1", "2.8.2", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0-M6")
+crossScalaVersions := Seq("2.8.1", "2.8.2", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0-M6", "2.10.0-M7", "2.10.0-RC1")
 
 // Use .target instead of target so it doesn't interfere with native sbt
 EclipseKeys.eclipseOutput := Some(".target")
