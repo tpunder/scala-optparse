@@ -1,4 +1,4 @@
-Scala OptParse is a simple command line parsing library for Scala
+Scala OptParse is a simple command line parsing library for Scala!
 
 SBT Dependency
 --------------
