@@ -10,24 +10,19 @@ licenses := Seq("Apache License, Version 2.0" -> url("http://www.apache.org/lice
 
 homepage := Some(url("http://frugalmechanic.com/tech/scala-optparse"))
 
-scalaVersion := "2.9.2"
+scalaVersion := "2.10.4"
 
-// Note: Use "++ 2.10.0" to select a specific version when building
-crossScalaVersions := Seq("2.8.1", "2.8.2", "2.9.0", "2.9.0-1", "2.9.1", "2.9.2", "2.10.0")
+// Note: Use "++ 2.11.0" to select a specific version when building
+crossScalaVersions := Seq("2.10.4", "2.11.0")
 
 // Use .target instead of target so it doesn't interfere with native sbt
 EclipseKeys.eclipseOutput := Some(".target")
 
 publishMavenStyle := true
 
-// TODO: use this version when scalatest is published under 2.10 (instead of 2.10.0)
-//libraryDependencies += "org.scalatest" %% "scalatest" % "1.8" % "test"
+resolvers += "Sonatype Releases" at "http://oss.sonatype.org/content/repositories/releases/"
 
-libraryDependencies <<= (scalaVersion, libraryDependencies) { (sv, deps) =>
-  // scalatest is currently published as 2.10.0 instead of 2.10 so we can't just use %%
-  val name = "scalatest_"+sv
-  deps :+ "org.scalatest" % name % "1.8" % "test"
-}
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.1.3" % "test"
 
 publishTo <<= version { (v: String) =>
   val nexus = "https://oss.sonatype.org/"
