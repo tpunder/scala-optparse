@@ -1,0 +1,46 @@
+Instructions for releasing to Sonatype/Central (since I always have to find them)
+
+# REFERENCES
+
+  SBT - http://www.scala-sbt.org/release/docs/Community/Using-Sonatype.html
+  OSSRH Guide - http://central.sonatype.org/pages/ossrh-guide.html
+  Release Instructions - http://central.sonatype.org/pages/releasing-the-deployment.html
+
+# 1 - SETUP CREDENTIALS
+
+  # Create a ~/.sbt/0.13/sonatype.sbt file with the following:
+  credentials += Credentials("Sonatype Nexus Repository Manager",
+                             "oss.sonatype.org",
+                             "your-sonatype-username",
+                             "your-sonatype-password")
+
+# 2a - TO PUBLISH A SINGLE SCALA VERSION (e.g. a new version of Scala comes out)
+
+  # Switch to whatever version you want to deploy (if not deploying all)
+  ++ 2.11.0
+
+  # Make sure tests pass
+  test
+
+  # Publish
+  publish-signed
+
+
+# 2b - TO PUBLISH ALL SCALA VERSIONS (e.g. new scala-optparse features or version)
+
+  # Make sure tests pass
+  + test
+
+  # Publish
+  + publish-signed
+
+# 3 - RELEASE (also see http://central.sonatype.org/pages/releasing-the-deployment.html)
+
+  - Log into https://oss.sonatype.org/
+  - Select "Staging Repositories"
+  - Select the proper entry (e.g. comfrugalmechanic-1000) which is probably at the bottom
+  - Inspect the "Content" tab to make sure everything looks good
+  - Click the "Close" button at the top of the "Staging Repositories" tab
+  - Click the "Release" button to actually perform the release
+  - The new version should show up here: http://oss.sonatype.org/content/repositories/releases/com/frugalmechanic/
+  - It should also get synced to Maven Central within a few hours
