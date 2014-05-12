@@ -30,12 +30,15 @@ Authors
 
 Tim Underwood ([GitHub](https://github.com/tpunder), [LinkedIn](https://www.linkedin.com/in/tpunder), [Twitter](https://twitter.com/tpunder), [Google Plus](https://plus.google.com/+TimUnderwood0))
 
-Copyright and License
----------------------
+Copyright
+---------
 
 Copyright [Frugal Mechanic](http://frugalmechanic.com)
 
-Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+License
+-------
+
+[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 Links
 -----
