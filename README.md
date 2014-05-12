@@ -11,16 +11,19 @@ SBT Dependency
 
 Example Usage
 -------------
-    import com.frugalmechanic.optparse._
 
-    object HelloWorldApp extends OptParse {
-      val name = StrOpt()
+```scala
+import com.frugalmechanic.optparse._
 
-      def main(args:Array[String]) {
-        parse(args)
-        println("Hello "+name.getOrElse("world"))
-      }
-    }
+object HelloWorldApp extends OptParse {
+  val name = StrOpt()
+
+  def main(args:Array[String]) {
+    parse(args)
+    println("Hello "+name.getOrElse("world"))
+  }
+}
+```
 
 License
 -------
