@@ -1,3 +1,8 @@
+Scala OptParse
+==============
+
+[![Build Status](https://travis-ci.org/frugalmechanic/scala-optparse.svg?branch=master)](https://travis-ci.org/frugalmechanic/scala-optparse)
+
 Scala OptParse is a simple command line parsing library for Scala
 
 SBT Dependency
