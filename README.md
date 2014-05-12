@@ -28,7 +28,7 @@ object HelloWorldApp extends OptParse {
 Authors
 -------
 
-Tim Underwood ([GitHub](https://github.com/tpunder), [LinkedIn](https://www.linkedin.com/in/tpunder), [Twitter](https://twitter.com/tpunder), [Google Plus](https://plus.google.com/+TimUnderwood0))
+Tim Underwood (<a href="https://github.com/tpunder" rel="author">GitHub</a>, <a href="https://www.linkedin.com/in/tpunder" rel="author">LinkedIn</a>, <a href="https://twitter.com/tpunder" rel="author">Twitter</a>, <a href="https://plus.google.com/+TimUnderwood0" rel="author">Google Plus</a>)
 
 Copyright
 ---------
