@@ -4,10 +4,10 @@ version := "1.1.1"
 
 description := "Command line option parsing for Scala"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.2"
 
 // Note: Use "++ 2.11.1" to select a specific version when building
-crossScalaVersions := Seq("2.10.4", "2.11.1")
+crossScalaVersions := Seq("2.10.4", "2.11.2")
 
 // Use .target instead of target so it doesn't interfere with native sbt
 EclipseKeys.eclipseOutput := Some(".target")
