@@ -1,6 +1,8 @@
+FMPublic
+
 name := "scala-optparse"
 
-version := "1.1.2-SNAPSHOT"
+version := "1.1.2"
 
 description := "Command line option parsing for Scala"
 
