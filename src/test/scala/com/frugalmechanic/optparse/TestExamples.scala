@@ -16,24 +16,23 @@
 
 package com.frugalmechanic.optparse
 
-import org.scalatest.junit.JUnitRunner
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
 import java.io.{ByteArrayOutputStream, PrintStream}
+import scala.language.reflectiveCalls
 
 // We need to use System.out.println since just println seems to cache
 // System.out (which we are modifying to capture output)
 import System.out.println
 
-class TestExamples extends FunSuite with ShouldMatchers {
+class TestExamples extends FunSuite with Matchers {
   test("Hello World") {
     check(HelloWorldApp, Array(), "Hello world")
     check(HelloWorldApp, Array("--name", "foo"), "Hello foo")
   }
 
-  type HasMain = {def main(args:Array[String])}
+  type HasMain = { def main(args:Array[String]) }
 
-  def check(obj:HasMain, args:Array[String], expectedOutput:String):Unit = synchronized {
+  def check(obj: HasMain, args: Array[String], expectedOutput: String):Unit = synchronized {
     val os = new ByteArrayOutputStream
     val printStream = new PrintStream(os)
 
@@ -49,15 +48,11 @@ class TestExamples extends FunSuite with ShouldMatchers {
   }
 }
 
-// START SNIPPET: hello_world
-import com.frugalmechanic.optparse._
-
 object HelloWorldApp extends OptParse {
   val name = StrOpt()
 
-  def main(args:Array[String]) {
+  def main(args: Array[String]): Unit = {
     parse(args)
     println("Hello "+name.getOrElse("world"))
   }
 }
-// START SNIPPET: hello_world

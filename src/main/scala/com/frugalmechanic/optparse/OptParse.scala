@@ -254,7 +254,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     init
 
     // Reset all opts to their default values
-    allOpts.foreach{_.reset}
+    allOpts.foreach{ _.reset() }
 
     // Reset any foundOpts
     foundOpts.clear
@@ -485,7 +485,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   /**
    * Print the help message to STDERR
    */
-  def help {
+  def help(): Unit = {
     init
 
     val maxLongSize = allOpts.foldLeft(0){ (maxLength,opt) =>

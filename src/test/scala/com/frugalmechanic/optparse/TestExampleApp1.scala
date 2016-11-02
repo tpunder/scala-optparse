@@ -16,11 +16,9 @@
 
 package com.frugalmechanic.optparse
 
-import org.scalatest.junit.JUnitRunner
-import org.scalatest.FunSuite
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSuite, Matchers}
 
-class TestExampleApp1 extends FunSuite with ShouldMatchers {
+class TestExampleApp1 extends FunSuite with Matchers {
 
   test("Empty Opts") {
     val app = parse(Array())
@@ -31,7 +29,7 @@ class TestExampleApp1 extends FunSuite with ShouldMatchers {
     
     // Implicit conversions to Option
     app.flag.get should be(false)
-    evaluating { app.str.get } should produce [NoSuchElementException]
+    an [NoSuchElementException] should be thrownBy app.str.get
 
     // Implicit conversions to Boolean
     val flagIsSet:Boolean = app.flag
@@ -63,34 +61,36 @@ class TestExampleApp1 extends FunSuite with ShouldMatchers {
   }
 
   test("Invalid Arguments") {
-    evaluating { parse(Array("foo","bar")) } should produce [IllegalArgumentException]
-    evaluating { parse(Array("--foo")) } should produce [IllegalArgumentException]
-    evaluating { parse(Array("--flag", "with argument")) } should produce [IllegalArgumentException]
-    evaluating { parse(Array("-f", "with argument")) } should produce [IllegalArgumentException]
-    evaluating { parse(Array("--str", "foo", "bar")) } should produce [IllegalArgumentException]
+    an [IllegalArgumentException] should be thrownBy parse(Array("foo","bar"))
+    an [IllegalArgumentException] should be thrownBy parse(Array("--foo"))
+    an [IllegalArgumentException] should be thrownBy parse(Array("--flag", "with argument"))
+    an [IllegalArgumentException] should be thrownBy parse(Array("-f", "with argument"))
+    an [IllegalArgumentException] should be thrownBy parse(Array("--str", "foo", "bar"))
   }
 
   test("Default Option Arguments") {
-    parseDefault(Array("foo","bar")).default.get should be(Seq("foo","bar"))
-    parseDefault(Array("--flag","--str","asd","foo","bar")).default.get should be(Seq("foo","bar"))
+    parseDefault(Array("foo","bar")).default.get should be (Seq("foo","bar"))
+    parseDefault(Array("--flag","--str","asd","foo","bar")).default.get should be (Seq("foo","bar"))
   }
 
   test("Invalid Default Option Arguments") {
-    evaluating { parseDefault(Array("foo","bar","--flag")) } should produce [IllegalArgumentException]
+    an [IllegalArgumentException] should be thrownBy parseDefault(Array("foo","bar","--flag"))
   }
 
-  private def parse(args:Array[String]):ExampleApp1 = {
-    val app = new ExampleApp1
+  private def parse(args:Array[String]): ExampleApp1 = {
+    val app: ExampleApp1 = new ExampleApp1
     app.parse(args)
     app
   }
   
-  private def parseDefault(args:Array[String]) = {
-    val app = new ExampleApp1 {
-      val default = defaultOpt{MultiStrOpt()}
-    }
+  private def parseDefault(args:Array[String]): DefaultExampleApp1 = {
+    val app: DefaultExampleApp1 = new DefaultExampleApp1()
     app.parse(args)
     app
+  }
+
+  private class DefaultExampleApp1 extends ExampleApp1 {
+    val default = defaultOpt{MultiStrOpt()}
   }
   
 }

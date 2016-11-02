@@ -75,7 +75,7 @@ abstract class Opt(_long: Option[String],
   def exclusive: Boolean = _exclusive
 
   // Reset this option to it's default
-  protected[optparse] def reset: Unit
+  protected[optparse] def reset(): Unit
 
   /* Placeholders for the actual long and short names since "long" and "short"
    * above might be initialized to None and we need a place to put any generated
