@@ -6,10 +6,10 @@ version := "1.1.3-SNAPSHOT"
 
 description := "Command line option parsing for Scala"
 
-scalaVersion := "2.12.0"
+scalaVersion := "2.12.1"
 
 // Note: Use "++ 2.11.1" to select a specific version when building
-crossScalaVersions := Seq("2.10.6", "2.11.8", "2.12.0")
+crossScalaVersions := Seq("2.10.6", "2.11.8", "2.12.1")
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-language:implicitConversions", "-feature", "-Xlint")
 
