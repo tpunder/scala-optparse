@@ -60,13 +60,13 @@ class ExampleApp1 extends OptParse {
    */
   val bool = BoolOpt()  
 
-  def main(args:Array[String]) {
+  def main(args:Array[String]): Unit = {
     parse(args)
 
     // An implicit Opt to Boolean conversion is used here
-    if(flag) println("Flag is set")
+    if (flag) println("Flag is set")
 
     // The same implicit is used here along with an implicit from OptVal to Option (the str.get)
-    if(str) println("Str is set: "+str.get)
+    if (str) println("Str is set: "+str.get)
   }
 }

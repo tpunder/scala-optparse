@@ -31,8 +31,8 @@ abstract class OptVal[T](_long: Option[String],
 ) extends Opt(_long, _short, _desc, _enables, _disables, _invalidWith, _validWith, _exclusive) {
 
   private var _value: Option[T] = None
-  private[optparse] def value_=(v: T) { _value = Some(v) }
-  private[optparse] def value_=(o: Option[T]) { _value = o }
+  private[optparse] def value_=(v: T): Unit =_value = Some(v)
+  private[optparse] def value_=(o: Option[T]): Unit =_value = o
 
   /**
    * The value attached to this command line option (wrapped in an Option)
@@ -47,7 +47,7 @@ abstract class OptVal[T](_long: Option[String],
   /**
    * Reset the value to the default
    */
-  def reset { value = default }
+  def reset: Unit = value = default
 
   /**
    * Get the value

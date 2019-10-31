@@ -34,7 +34,7 @@ object FileOpt {
     validWith: => Seq[Opt] = Nil,
     exclusive: Boolean = false,
     validate: File => Boolean = {s => true}
-  ) = new FileOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate)
+  ): FileOpt = new FileOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate)
 }
 
 /**
@@ -58,5 +58,5 @@ class FileOpt(
   /* FileOpt Specific Options */
   //mustExist: Boolean = false
 ) extends ArgOpt[File](long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate) with SingleOpt[File] {
-  def parseValue(v:String) = new File(v)
+  def parseValue(v:String): File = new File(v)
 }

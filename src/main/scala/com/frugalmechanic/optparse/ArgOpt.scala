@@ -26,16 +26,17 @@ package com.frugalmechanic.optparse
  *  - [[com.frugalmechanic.optparse.FileOpt]]
  *  - [[com.frugalmechanic.optparse.MultiStrOpt]]
  */
-abstract class ArgOpt[T](_long: Option[String],
-                   _short: Option[Char],
-                   _default :Option[T],
-                   _desc: String,
-                   _enables: => Seq[BoolOpt],
-                   _disables: => Seq[BoolOpt],
-                   _invalidWith: => Seq[Opt],
-                   _validWith: => Seq[Opt],
-                   _exclusive: Boolean,
-                   _validate: T => Boolean
+abstract class ArgOpt[T](
+  _long: Option[String],
+  _short: Option[Char],
+  _default :Option[T],
+  _desc: String,
+  _enables: => Seq[BoolOpt],
+  _disables: => Seq[BoolOpt],
+  _invalidWith: => Seq[Opt],
+  _validWith: => Seq[Opt],
+  _exclusive: Boolean,
+  _validate: T => Boolean
 ) extends OptVal[T](_long, _short, _default, _desc, _enables, _disables, _invalidWith, _validWith, _exclusive) {
 
   /**
@@ -51,7 +52,7 @@ abstract class ArgOpt[T](_long: Option[String],
   /**
    * Set the value (sending it through parseValue())
    */
-  def setValue(arg: String)
+  def setValue(arg: String): Unit
 
   /**
    * Validate the parsed value using the validate argument passed in on the constructor

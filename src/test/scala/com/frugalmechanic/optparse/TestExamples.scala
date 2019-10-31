@@ -30,7 +30,7 @@ class TestExamples extends FunSuite with Matchers {
     check(HelloWorldApp, Array("--name", "foo"), "Hello foo")
   }
 
-  type HasMain = { def main(args:Array[String]) }
+  type HasMain = { def main(args:Array[String]): Unit }
 
   def check(obj: HasMain, args: Array[String], expectedOutput: String):Unit = synchronized {
     val os = new ByteArrayOutputStream

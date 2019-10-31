@@ -27,7 +27,7 @@ object IntOpt {
    * @param desc Description of the parameter (used in help message)
    * @param enables Other flags that this option implicitly enables
    * @param disables Other flags that this option implicitly disables
-   * @param inavlidWith Other options that this option is not valid with
+   * @param invalidWith Other options that this option is not valid with
    * @param validWith Other options that are required to be set when using this options
    * @param exclusive Whether or not this option is exclusive and cannot be used with any other options (e.g. like --help where it prints the help message and exits)
    * @param validate A method that takes the String value and returns a boolean indicating if the argument value is valid
@@ -44,7 +44,7 @@ object IntOpt {
     validWith: => Seq[Opt] = Nil,
     exclusive: Boolean = false,
     validate: Int => Boolean = {s => true}
-  ) = new IntOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate)
+  ): IntOpt = new IntOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate)
 }
 
 /**
@@ -56,7 +56,7 @@ object IntOpt {
  * @param desc Description of the parameter (used in help message)
  * @param enables Other flags that this option implicitly enables
  * @param disables Other flags that this option implicitly disables
- * @param inavlidWith Other options that this option is not valid with
+ * @param invalidWith Other options that this option is not valid with
  * @param validWith Other options that are required to be set when using this options
  * @param exclusive Whether or not this option is exclusive and cannot be used with any other options (e.g. like --help where it prints the help message and exits)
  * @param validate A method that takes the String value and returns a boolean indicating if the argument value is valid
@@ -80,5 +80,5 @@ class IntOpt(
   /**
    * Parses the string command line argument into an Int
    */
-  def parseValue(v:String) = v.toInt
+  def parseValue(v:String): Int = v.toInt
 }

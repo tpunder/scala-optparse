@@ -27,7 +27,7 @@ object MultiStrOpt {
    * @param desc Description of the parameter (used in help message)
    * @param enables Other flags that this option implicitly enables
    * @param disables Other flags that this option implicitly disables
-   * @param inavlidWith Other options that this option is not valid with
+   * @param invalidWith Other options that this option is not valid with
    * @param validWith Other options that are required to be set when using this options
    * @param exclusive Whether or not this option is exclusive and cannot be used with any other options (e.g. like --help where it prints the help message and exits)
    * @param validate A method that takes the String value and returns a boolean indicating if the argument value is valid
@@ -44,7 +44,9 @@ object MultiStrOpt {
     validWith: => Seq[Opt] = Nil,
     exclusive: Boolean = false,
     validate: Seq[String] => Boolean = {s => true}
-  ) = new MultiStrOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate)
+  ): MultiStrOpt = {
+    new MultiStrOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate)
+  }
 }
 
 /**
@@ -56,7 +58,7 @@ object MultiStrOpt {
  * @param desc Description of the parameter (used in help message)
  * @param enables Other flags that this option implicitly enables
  * @param disables Other flags that this option implicitly disables
- * @param inavlidWith Other options that this option is not valid with
+ * @param invalidWith Other options that this option is not valid with
  * @param validWith Other options that are required to be set when using this options
  * @param exclusive Whether or not this option is exclusive and cannot be used with any other options (e.g. like --help where it prints the help message and exits)
  * @param validate A method that takes the String value and returns a boolean indicating if the argument value is valid
@@ -77,5 +79,5 @@ class MultiStrOpt(
   validate: Seq[String] => Boolean
 ) extends ArgOpt[Seq[String]](long, short, default, desc, enables, disables, invalidWith, validWith, exclusive, validate) with MultiOpt[String] {
 
-  def parseValue(v:String) = v
+  def parseValue(v:String): String = v
 }

@@ -29,7 +29,7 @@ object BoolOpt {
    * @param desc Description of the parameter (used in help message)
    * @param enables Other flags that this option implicitly enables
    * @param disables Other flags that this option implicitly disables
-   * @param inavlidWith Other options that this option is not valid with
+   * @param invalidWith Other options that this option is not valid with
    * @param validWith Other options that are required to be set when using this options
    * @param exclusive Whether or not this option is exclusive and cannot be used with any other options (e.g. like --help where it prints the help message and exits)
    */
@@ -44,7 +44,7 @@ object BoolOpt {
     invalidWith: => Seq[Opt] = Nil,
     validWith: => Seq[Opt] = Nil,
     exclusive: Boolean = false
-  ) = new BoolOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive)
+  ): BoolOpt = new BoolOpt(long, short, default, desc, enables, disables, invalidWith, validWith, exclusive)
 }
 
 /**
@@ -78,7 +78,7 @@ object BoolOpt {
  *   def main(args:Array[String]) {
  *     parse(args)
  *
- *     if(verbose) println("You want verbose output")
+ *     if (verbose) println("You want verbose output")
  *   }
  * }
  * }}}
@@ -89,7 +89,7 @@ object BoolOpt {
  * @param desc Description of the parameter (used in help message)
  * @param enables Other flags that this option implicitly enables
  * @param disables Other flags that this option implicitly disables
- * @param inavlidWith Other options that this option is not valid with
+ * @param invalidWith Other options that this option is not valid with
  * @param validWith Other options that are required to be set when using this options
  * @param exclusive Whether or not this option is exclusive and cannot be used with any other options (e.g. like --help where it prints the help message and exits)
  */

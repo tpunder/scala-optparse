@@ -19,8 +19,8 @@ package com.frugalmechanic.optparse
 trait MultiOpt[E] { self: ArgOpt[Seq[E]] =>
   override type Elem = E
 
-  def setValue(v: String) {
-    if(value.isEmpty) value = Vector[E]()
+  def setValue(v: String): Unit = {
+    if (value.isEmpty) value = Vector[E]()
     value = (value.get.asInstanceOf[Vector[E]] :+ parseValue(v).asInstanceOf[E])
   }
 }

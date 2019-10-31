@@ -73,16 +73,16 @@ import scala.collection.mutable.{HashMap,ListBuffer}
  *     parse(args)
  *
  *     // Implicit conversion to bool
- *     if(flag) println("flag was set!")
+ *     if (flag) println("flag was set!")
  *     
  *     // Implicit conversion to bool to check if a value is set
- *     if(name) println("Name: "+name.get)
+ *     if (name) println("Name: "+name.get)
  *     
- *     if(aliases) println("Your alias(es) are: "+aliases.getOrElse(Nil))
+ *     if (aliases) println("Your alias(es) are: "+aliases.getOrElse(Nil))
  *
- *     if(number) println("Your number is: "+number.get)
+ *     if (number) println("Your number is: "+number.get)
  *
- *     if(file) println("Your file is: "+file.get)
+ *     if (file) println("Your file is: "+file.get)
  *   }
  *
  * }
@@ -113,7 +113,7 @@ import scala.collection.mutable.{HashMap,ListBuffer}
  *   def main(args: Array[String]) {
  *     options.parse(args)
  *
- *     if(options.flag) println("flag is set")
+ *     if (options.flag) println("flag is set")
  *   }
  * }
  * }}}
@@ -168,7 +168,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     val proposedShortNames = new HashMap[Char,ListBuffer[Opt]]
 
     // Scan all properties/members for Opt's and build up the longNames/shortNames
-    if(optParseDebug) println("Scanning Options...")
+    if (optParseDebug) println("Scanning Options...")
 
     val optClass = classOf[Opt]
 
@@ -178,7 +178,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     getClass.getMethods.filter{f => optClass.isAssignableFrom(f.getReturnType) && f.getParameterTypes.isEmpty }.foreach { f =>
       val methodName: String = f.getName
       val opt: Opt = f.invoke(this).asInstanceOf[Opt]
-      if(optParseDebug) println(" Found Opt: "+f.getName+" => "+opt)
+      if (optParseDebug) println(" Found Opt: "+f.getName+" => "+opt)
 
       // Keep track of all of our opts
       allOpts += opt
@@ -205,13 +205,13 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     // Pass 2 - Finalize any of the long/short name proposals
     //
     proposedLongNames.foreach { case (longName, opts) =>
-        if(!longNames.contains(longName) && opts.size == 1) {
+        if (!longNames.contains(longName) && opts.size == 1) {
           registerLongName(longName, opts.head)
         }
     }
 
     proposedShortNames.foreach { case (shortName, opts) =>
-      if(!shortNames.contains(shortName) && opts.size == 1) {
+      if (!shortNames.contains(shortName) && opts.size == 1) {
         registerShortName(shortName, opts.head)
       }
     }
@@ -222,17 +222,17 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     allOpts.foreach { opt =>
       assert(opt.actualLong != None || opt.actualShort != None, "Command Line Options is missing a long or short name: "+opt.methodName)
 
-      if(optParseDebug) println(opt.actualShort+" "+opt.actualLong+" => "+opt)
+      if (optParseDebug) println(opt.actualShort.toString+" "+opt.actualLong+" => "+opt)
     }
   }
 
-  private def registerLongName(name: String, opt: Opt) {
+  private def registerLongName(name: String, opt: Opt): Unit = {
     assert(!longNames.contains(name), "Duplicate Long Name: "+name)
     longNames(name) = opt
     opt.actualLong = name
   }
 
-  private def registerShortName(char: Char, opt: Opt) {
+  private def registerShortName(char: Char, opt: Opt): Unit = {
     assert(!shortNames.contains(char), "Duplicate Short Name: "+char)
     shortNames(char) = opt
     opt.actualShort = char
@@ -242,7 +242,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
    * Declare a "default option"
    */
   def defaultOpt[T](arg: ArgOpt[T]): ArgOpt[T] = {
-    if(_defaultOpt.isDefined) exit("A default option is already defined!")
+    if (_defaultOpt.isDefined) exit("A default option is already defined!")
     _defaultOpt = Some(arg)
     arg
   }
@@ -250,7 +250,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   /**
    * Parse the given command line options
    */
-  def parse(args: Array[String]) {
+  def parse(args: Array[String]): Unit = {
     init
 
     // Reset all opts to their default values
@@ -263,26 +263,26 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     buf ++= args
 
     try {
-      while(!buf.isEmpty) parseArg(buf)
+      while (!buf.isEmpty) parseArg(buf)
       
       foundOpts.foreach{handleDisablesEnables}
       
       validateArgs()
     } catch {
       case ex: IllegalArgumentException =>
-        if(optParseExitOnError) {
+        if (optParseExitOnError) {
           exit("Error Parsing Command Line Arguments: "+ex.getMessage)
         } else throw ex
     }
   }
 
-  private def parseArg(args: ListBuffer[String]) {
+  private def parseArg(args: ListBuffer[String]): Unit = {
     def nextArg(): String = {
-      if(args.isEmpty) error("Missing next argument")
+      if (args.isEmpty) error("Missing next argument")
       args.remove(0)
     }
 
-    def parseDefaultOpt(value: String) {
+    def parseDefaultOpt(value: String): Unit = {
       _defaultOpt match {
         case Some(opt) => opt.setValue(value)
         case None => error("No Default Opt Specified.  Not sure how to parse: "+value)
@@ -311,25 +311,25 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
      *  (terminate normal parsing, everything else should be the default opt)
      */
 
-    if(head == "--") {
+    if (head == "--") {
       // Terminate parsing, everything else is the default opt
 
-      while(!args.isEmpty) {
+      while (!args.isEmpty) {
         val value = nextArg()
 
         // Parse the values if there is a default opt set
         parseDefaultOpt(value)
       }
-    } else if(head == "-") {
+    } else if (head == "-") {
       error("Not sure what to do with '-'")
-    } else if(head.startsWith("--")) {
+    } else if (head.startsWith("--")) {
       // Long Opt
 
       // e.g. --name=foo
       val equalsIdx = head.indexOf("=")
       val hasEquals = equalsIdx >= 0
 
-      val endIdx = if(hasEquals) equalsIdx else head.length
+      val endIdx = if (hasEquals) equalsIdx else head.length
 
       val name = head.substring(2, endIdx)
 
@@ -340,27 +340,27 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
           opt match {
             case argOpt: ArgOpt[_] =>
-              val value = if(hasEquals) head.substring(equalsIdx+1) else nextArg()
+              val value = if (hasEquals) head.substring(equalsIdx+1) else nextArg()
               argOpt.setValue(value)
 
-              if(optParseDebug) println("Parsed Long Options: '"+name+"' with value: '"+value+"'")
+              if (optParseDebug) println("Parsed Long Options: '"+name+"' with value: '"+value+"'")
 
             case boolOpt: BoolOpt =>
               // Should not have a value
-              if(hasEquals) error("Option does not take a value: "+name)
+              if (hasEquals) error("Option does not take a value: "+name)
               boolOpt.value = true
 
-              if(optParseDebug) println("Parsed BoolOpt: "+name)
+              if (optParseDebug) println("Parsed BoolOpt: "+name)
             case _ =>
               error("Unknown opt type")
           }
       }
 
-    } else if(head.startsWith("-")) {
+    } else if (head.startsWith("-")) {
       // Short Opt
       var idx: Int = 1
 
-      while(idx < head.length) {
+      while (idx < head.length) {
         val ch: Char = head(idx)
 
         shortNames.get(ch) match {
@@ -373,12 +373,12 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
                 // Possible Patterns:
                 //    -ovalue, -o value -o=value, -abovalue => -a, -b, -o value
 
-                val value: String = if(idx+1 == head.length) {
+                val value: String = if (idx+1 == head.length) {
                   // -o value
                   nextArg()
                 } else if (head(idx+1) == '=') {
                   // -o= (error, missing value)
-                  if(idx+2 >= head.length) error("Missing value for short option: "+ch)
+                  if (idx+2 >= head.length) error("Missing value for short option: "+ch)
 
                   // -o=value
                   head.substring(idx+2)
@@ -389,7 +389,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
                 argOpt.setValue(value)
 
-                if(optParseDebug) println("Parsed Short Option: '"+ch+"' with value: '"+value+"'")
+                if (optParseDebug) println("Parsed Short Option: '"+ch+"' with value: '"+value+"'")
                 idx = head.length // Terminate the loop
 
               case boolOpt: BoolOpt =>
@@ -397,7 +397,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
                 boolOpt.value = true
 
-                if(optParseDebug) println("Parsed BoolOpt: "+ch)
+                if (optParseDebug) println("Parsed BoolOpt: "+ch)
             }
         }
 
@@ -411,21 +411,21 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
       parseDefaultOpt(head)
 
-      while(!args.isEmpty) {
+      while (!args.isEmpty) {
         val value = nextArg()
-        if(value.startsWith("-")) error("Invalid Argument.  Expected more default option values but instead got: "+value)
+        if (value.startsWith("-")) error("Invalid Argument.  Expected more default option values but instead got: "+value)
         parseDefaultOpt(value)
       }
     }
 
-    if(helpOpt) {
+    if (helpOpt) {
       help
-      if(optParseExitOnError) exit(status=0) else throw new IllegalArgumentException()
+      if (optParseExitOnError) exit(status=0) else throw new IllegalArgumentException()
     }
 
   }
 
-  private def handleDisablesEnables(opt: Opt) {
+  private def handleDisablesEnables(opt: Opt): Unit = {
     opt.disables.foreach{ disableOpt =>
       disableOpt.value = false
       foundOpts -= disableOpt
@@ -433,23 +433,23 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
     opt.enables.foreach{ enableOpt =>
       enableOpt.value = true
-      if(!foundOpts.contains(enableOpt)) foundOpts += enableOpt
+      if (!foundOpts.contains(enableOpt)) foundOpts += enableOpt
       handleDisablesEnables(enableOpt)
     }
 
 
   }
 
-  private def validateArgs() {
+  private def validateArgs(): Unit = {
     foundOpts.foreach{ opt =>
-      if(opt.exclusive && foundOpts.size > 1) error(optName(opt)+" is exclusive and cannot be used with other arguments")
+      if (opt.exclusive && foundOpts.size > 1) error(optName(opt)+" is exclusive and cannot be used with other arguments")
 
       opt.invalidWith.foreach{ other =>
-        if(foundOpts.contains(other)) error("Invalid Arg Combination: "+optName(other)+" is not allowed with "+optName(opt))
+        if (foundOpts.contains(other)) error("Invalid Arg Combination: "+optName(other)+" is not allowed with "+optName(opt))
       }
 
       opt.validWith.foreach{ other =>
-        if(!foundOpts.contains(other)) error("Invalid Arg Combination: "+optName(other)+" is required when using "+optName(opt))
+        if (!foundOpts.contains(other)) error("Invalid Arg Combination: "+optName(other)+" is required when using "+optName(opt))
       }
     }
   }
@@ -470,14 +470,14 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   /**
    * Exit the application with a message
    */
-  protected def error(msg: String) {
+  protected def error(msg: String): Unit = {
     //System.err.println("Error Parsing Command Line Arguments: "+msg)
     //exit(msg)
     throw new IllegalArgumentException(msg)
   }
 
   protected def exit(msg: String = null, status: Int = -1): Nothing = {
-    if(null != msg) System.err.println(msg)
+    if (null != msg) System.err.println(msg)
     System.exit(status)
     throw new Throwable()
   }
@@ -490,7 +490,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
 
     val maxLongSize = allOpts.foldLeft(0){ (maxLength,opt) =>
       val length = opt.actualLong.map{_.length}.getOrElse(0)
-      if(length > maxLength) length else maxLength
+      if (length > maxLength) length else maxLength
     }
 
     allOpts.foreach { opt =>
@@ -504,10 +504,10 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
       val sb = new StringBuilder
       sb.append("  "+short+"  "+long+"  "+opt.desc)
 
-      if(!opt.enables.isEmpty || !opt.disables.isEmpty) {
+      if (!opt.enables.isEmpty || !opt.disables.isEmpty) {
         sb.append("  (")
 
-        if(!opt.enables.isEmpty) {
+        if (!opt.enables.isEmpty) {
           sb.append("enables: ")
           sb.append(opt.enables.map{o =>
             assert(null != o)
@@ -515,7 +515,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
           }.mkString(", "))
         }
 
-        if(!opt.disables.isEmpty) {
+        if (!opt.disables.isEmpty) {
           sb.append("disables: ")
           sb.append(opt.disables.map{o =>
             assert(null != o)
