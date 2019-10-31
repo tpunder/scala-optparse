@@ -7,7 +7,7 @@ Scala OptParse is a simple command line parsing library for Scala
 
 SBT Dependency
 --------------
-    libraryDependencies += "com.frugalmechanic" %% "scala-optparse" % "1.1.2"
+    libraryDependencies += "com.frugalmechanic" %% "scala-optparse" % "1.1.3"
 
 Example Usage
 -------------
