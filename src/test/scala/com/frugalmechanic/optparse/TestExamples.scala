@@ -16,27 +16,32 @@
 
 package com.frugalmechanic.optparse
 
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 import java.io.{ByteArrayOutputStream, PrintStream}
-import scala.language.reflectiveCalls
 
 // We need to use System.out.println since just println seems to cache
 // System.out (which we are modifying to capture output)
 import System.out.println
 
-class TestExamples extends FunSuite with Matchers {
+final class TestExamples extends AnyFunSuite with Matchers {
   test("Hello World") {
     check(HelloWorldApp, Array(), "Hello world")
     check(HelloWorldApp, Array("--name", "foo"), "Hello foo")
   }
 
-  type HasMain = { def main(args:Array[String]): Unit }
+  // Original signature that fails to compile under Scala 3.0 and 3.1 with this error:
+  // "scala.MatchError: JavaArrayType(TypeRef(ThisType(TypeRef(NoPrefix,module class lang)),class String)) (of class dotty.tools.dotc.core.Types$CachedJavaArrayType)"
+  // Fortunately it looks like we are only testing the HelloWorldApp so we can just directly use that type
+//  import scala.language.reflectiveCalls
+//  type HasMain = { def main(args: Array[String]): Unit }
+//  def check(obj: HasMain, args: Array[String], expectedOutput: String): Unit = synchronized {
 
-  def check(obj: HasMain, args: Array[String], expectedOutput: String):Unit = synchronized {
-    val os = new ByteArrayOutputStream
-    val printStream = new PrintStream(os)
+  def check(obj: HelloWorldApp.type, args: Array[String], expectedOutput: String): Unit = synchronized {
+    val os: ByteArrayOutputStream = new ByteArrayOutputStream()
+    val printStream: PrintStream = new PrintStream(os)
 
-    val old = System.out
+    val old: PrintStream = System.out
     try {
       System.setOut(printStream)
       obj.main(args)

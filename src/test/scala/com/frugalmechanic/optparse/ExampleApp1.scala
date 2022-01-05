@@ -29,7 +29,7 @@ class ExampleApp1 extends OptParse {
 
   /**
    * An example boolean option.
-   * 
+   *
    * defaults to -f and --flag as long as no other option names conflict
    */
   val flag = BoolOpt()
@@ -58,9 +58,9 @@ class ExampleApp1 extends OptParse {
   /**
    * Another flag (-b or --bool) to test multiple flags (e.g. -fb)
    */
-  val bool = BoolOpt()  
+  val bool = BoolOpt()
 
-  def main(args:Array[String]): Unit = {
+  def main(args: Array[String]): Unit = {
     parse(args)
 
     // An implicit Opt to Boolean conversion is used here

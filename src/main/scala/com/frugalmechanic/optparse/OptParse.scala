@@ -16,7 +16,8 @@
 
 package com.frugalmechanic.optparse
 
-import scala.collection.mutable.{HashMap,ListBuffer}
+import java.lang.reflect.Method
+import scala.collection.mutable.{HashMap, ListBuffer}
 
 /**
  * =Simple Command Line Parsing for Scala=
@@ -138,10 +139,10 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   protected val allOpts = new ListBuffer[Opt]
 
   // Long Option Names (e.g. --foo)
-  protected val longNames = new HashMap[String,Opt]
+  protected val longNames = new HashMap[String, Opt]
 
   // Short Option Names (e.g. -f)
-  protected val shortNames = new HashMap[Char,Opt]
+  protected val shortNames = new HashMap[Char, Opt]
 
   // List of options that we found during parsing (for validation)
   protected val foundOpts = new ListBuffer[Opt]
@@ -154,29 +155,34 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
   /**
    * Override to true to enable simple println's showing what OptParse is doing
    */
-  val optParseDebug = false
+  val optParseDebug: Boolean = false
 
   /**
    * By default OptParse will do a System.exit on any parsing errors or when
    * --help is invoked.  You can override this to false if you want an
    * IllegalArgumentException exception thrown instead
    */
-  val optParseExitOnError = true
+  val optParseExitOnError: Boolean = true
 
   private lazy val init: Unit = {
-    val proposedLongNames = new HashMap[String,ListBuffer[Opt]]
-    val proposedShortNames = new HashMap[Char,ListBuffer[Opt]]
+    val proposedLongNames = new HashMap[String, ListBuffer[Opt]]
+    val proposedShortNames = new HashMap[Char, ListBuffer[Opt]]
 
     // Scan all properties/members for Opt's and build up the longNames/shortNames
     if (optParseDebug) println("Scanning Options...")
 
-    val optClass = classOf[Opt]
+    val optClass: Class[Opt] = classOf[Opt]
 
     //
     // Pass 1 - Gather all the Opt's and track long/short names
     //
-    getClass.getMethods.filter{f => optClass.isAssignableFrom(f.getReturnType) && f.getParameterTypes.isEmpty }.foreach { f =>
-      val methodName: String = f.getName
+    getClass.getMethods().toIndexedSeq.filter{ (f: Method) =>
+      // Note: On Scala 3.0 and 3.1 for some reason calling f.getParameterTypes().isEmpty was always false. I have no
+      // idea what is going on so I've just switched it to directly checking the length and avoiding any Scala implicit
+      // conversions.
+      optClass.isAssignableFrom(f.getReturnType()) && f.getParameterTypes().length == 0
+    }.foreach { (f: Method) =>
+      val methodName: String = f.getName()
       val opt: Opt = f.invoke(this).asInstanceOf[Opt]
       if (optParseDebug) println(" Found Opt: "+f.getName+" => "+opt)
 
@@ -257,7 +263,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     allOpts.foreach{ _.reset() }
 
     // Reset any foundOpts
-    foundOpts.clear
+    foundOpts.clear()
 
     val buf = new ListBuffer[String]
     buf ++= args
@@ -326,12 +332,12 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
       // Long Opt
 
       // e.g. --name=foo
-      val equalsIdx = head.indexOf("=")
-      val hasEquals = equalsIdx >= 0
+      val equalsIdx: Int = head.indexOf("=")
+      val hasEquals: Boolean = equalsIdx >= 0
 
-      val endIdx = if (hasEquals) equalsIdx else head.length
+      val endIdx: Int = if (hasEquals) equalsIdx else head.length
 
-      val name = head.substring(2, endIdx)
+      val name: String = head.substring(2, endIdx)
 
       longNames.get(name) match {
         case None => error("Unknown long option: "+name)
@@ -419,7 +425,7 @@ trait OptParse extends OptParseImplicits with OptParseTypes {
     }
 
     if (helpOpt) {
-      help
+      help()
       if (optParseExitOnError) exit(status=0) else throw new IllegalArgumentException()
     }
 

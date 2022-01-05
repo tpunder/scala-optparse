@@ -47,7 +47,7 @@ abstract class OptVal[T](_long: Option[String],
   /**
    * Reset the value to the default
    */
-  def reset: Unit = value = default
+  def reset(): Unit = value = default
 
   /**
    * Get the value

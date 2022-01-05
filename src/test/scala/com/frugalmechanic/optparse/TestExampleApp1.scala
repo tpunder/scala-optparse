@@ -16,48 +16,49 @@
 
 package com.frugalmechanic.optparse
 
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
-class TestExampleApp1 extends FunSuite with Matchers {
+final class TestExampleApp1 extends AnyFunSuite with Matchers {
 
   test("Empty Opts") {
-    val app = parse(Array())
+    val app: ExampleApp1 = parse(Array())
 
-    app.flag.value should be(Some(false))
-    app.str.value should be(None)
-    app.number.value should be(None)
-    
+    app.flag.value shouldBe Some(false)
+    app.str.value shouldBe None
+    app.number.value shouldBe None
+
     // Implicit conversions to Option
-    app.flag.get should be(false)
+    app.flag.get shouldBe(false)
     an [NoSuchElementException] should be thrownBy app.str.get
 
     // Implicit conversions to Boolean
-    val flagIsSet:Boolean = app.flag
-    val strIsSet:Boolean = app.str
+    val flagIsSet: Boolean = app.flag
+    val strIsSet: Boolean = app.str
 
-    flagIsSet should be(false)
-    strIsSet should be(false)
+    flagIsSet shouldBe(false)
+    strIsSet shouldBe(false)
   }
 
   test("Simple Argument Values") {
-    parse(Array("-f")).flag.get should be(true)
-    parse(Array("--flag")).flag.get should be(true)
+    parse(Array("-f")).flag.get shouldBe(true)
+    parse(Array("--flag")).flag.get shouldBe(true)
 
-    parse(Array("-s","foo")).str.get should be("foo")
-    parse(Array("--str","foo")).str.get should be("foo")
+    parse(Array("-s","foo")).str.get shouldBe("foo")
+    parse(Array("--str","foo")).str.get shouldBe("foo")
 
-    parse(Array("-n","123")).number.get should be(123)
-    parse(Array("--number","123")).number.get should be(123)
+    parse(Array("-n","123")).number.get shouldBe(123)
+    parse(Array("--number","123")).number.get shouldBe(123)
 
-    parse(Array("-a","Foo","-a","Bar")).aliases.get should be(Seq("Foo","Bar"))
-    parse(Array("--alias","Foo","--alias","Bar")).aliases.get should be(Seq("Foo","Bar"))
+    parse(Array("-a","Foo","-a","Bar")).aliases.get shouldBe(Seq("Foo","Bar"))
+    parse(Array("--alias","Foo","--alias","Bar")).aliases.get shouldBe(Seq("Foo","Bar"))
   }
 
   test("Multi Flags") {
     val app = parse(Array("-fb"))
 
-    app.flag.get should be(true)
-    app.bool.get should be(true)
+    app.flag.get shouldBe(true)
+    app.bool.get shouldBe(true)
   }
 
   test("Invalid Arguments") {
@@ -77,20 +78,20 @@ class TestExampleApp1 extends FunSuite with Matchers {
     an [IllegalArgumentException] should be thrownBy parseDefault(Array("foo","bar","--flag"))
   }
 
-  private def parse(args:Array[String]): ExampleApp1 = {
-    val app: ExampleApp1 = new ExampleApp1
+  private def parse(args: Array[String]): ExampleApp1 = {
+    val app: ExampleApp1 = new ExampleApp1()
     app.parse(args)
     app
   }
-  
-  private def parseDefault(args:Array[String]): DefaultExampleApp1 = {
+
+  private def parseDefault(args: Array[String]): DefaultExampleApp1 = {
     val app: DefaultExampleApp1 = new DefaultExampleApp1()
     app.parse(args)
     app
   }
 
   private class DefaultExampleApp1 extends ExampleApp1 {
-    val default = defaultOpt{MultiStrOpt()}
+    val default: ArgOpt[Seq[String]] = defaultOpt(MultiStrOpt())
   }
-  
+
 }
