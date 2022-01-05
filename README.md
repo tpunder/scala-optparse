@@ -3,7 +3,20 @@ Scala OptParse
 
 [![Build Status](https://github.com/tpunder/scala-optparse/actions/workflows/build.yml/badge.svg)](https://github.com/tpunder/scala-optparse/actions/workflows/build.yml)
 
-Scala OptParse is a simple command line parsing library for Scala
+Scala OptParse is a simple command line parsing library for Scala.
+
+This was one of the first Scala libraries that I wrote (as you can probably tell
+by looking at the code). It is still in production use today (as of Jan 2022) 
+although no longer at Frugal Mechanic (which no longer exists).
+
+Supported Scala Versions
+------------------------
+
+ - 2.10
+ - 2.11
+ - 2.12
+ - 2.13
+ - 3.x
 
 SBT Dependency
 --------------
