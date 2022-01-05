@@ -1,8 +1,9 @@
-target
-.target
-.settings
-.classpath
-.project
-.manager
+.bsp
 .cache
+.classpath
 .idea
+.manager
+.project
+.settings
+.target
+target
