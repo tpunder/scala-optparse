@@ -1,7 +1,7 @@
 Scala OptParse
 ==============
 
-[![Build Status](https://travis-ci.org/frugalmechanic/scala-optparse.svg?branch=master)](https://travis-ci.org/frugalmechanic/scala-optparse)
+[![Build Status](https://github.com/tpunder/scala-optparse/actions/workflows/build.yml/badge.svg)](https://github.com/tpunder/scala-optparse/actions/workflows/build.yml)
 
 Scala OptParse is a simple command line parsing library for Scala
 
@@ -39,10 +39,3 @@ License
 -------
 
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-Links
------
-
-* [Home](http://frugalmechanic.github.com/scala-optparse)
-* [Scaladocs](http://frugalmechanic.github.com/scala-optparse/scaladocs/1.1.1#com.frugalmechanic.optparse.OptParse)
-* [Source](https://github.com/frugalmechanic/scala-optparse)
