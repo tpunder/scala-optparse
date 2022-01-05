@@ -1,5 +1,3 @@
-FMPublic
-
 name := "scala-optparse"
 
 description := "Command line option parsing for Scala"
@@ -13,4 +11,11 @@ crossScalaVersions := Seq("2.10.7", "2.11.12", "2.12.15", "2.13.7", "3.0.2")
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-language:implicitConversions", "-feature", "-Xfatal-warnings")
 
+// Don't use -Xfatal-warnings for the API Docs
+Compile / doc / scalacOptions := Seq()
+
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % "test"
+
+publishTo := sonatypePublishToBundle.value
+
+ThisBuild / versionScheme := Some("semver-spec")
