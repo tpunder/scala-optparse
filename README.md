@@ -1,7 +1,7 @@
 Scala OptParse
 ==============
 
-[![Build Status](https://github.com/frugalmechanic/scala-optparse/actions/workflows/build.yml/badge.svg)](https://github.com/frugalmechanic/scala-optparse/actions/workflows/build.yml)
+[![Build Status](https://github.com/frugalmechanic/scala-optparse/actions/workflows/build.yml/badge.svg)](https://github.com/frugalmechanic/scala-optparse/actions/workflows/build.yml) [![scala-optparse Scala version support](https://index.scala-lang.org/frugalmechanic/scala-optparse/scala-optparse/latest-by-scala-version.svg)](https://index.scala-lang.org/frugalmechanic/scala-optparse/scala-optparse)
 
 Scala OptParse is a simple command line parsing library for Scala.
 
